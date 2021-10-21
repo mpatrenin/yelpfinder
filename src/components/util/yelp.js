@@ -11,37 +11,36 @@ const Yelp = {
                 Authorization:`Bearer ${apiKey}`
             }
         })
-            .then(response => {
-            return response.json();
-            })
-                .then(jsonResponse => {
-                if (jsonResponse.businesses && jsonResponse.businesses.length>0) {
-                    return jsonResponse.businesses.map(business => {
-                        document.getElementById('root').style.cursor = `default`;
-                        return {
-                        id: business.id,
-                        imageSrc: business.image_url,
-                        name: business.name,
-                        address: business.location.address1,
-                        city: business.location.city,
-                        state: business.location.state,
-                        zipCode: business.location.zip_code,
-                        category: business.categories[0].title,
-                        rating: business.rating,
-                        reviewCount: business.review_count,
-                        phone: business.phone,
-                        price: business.price
-                        };
-                    });
-                } 
-                else {
+        .then(response => {
+        return response.json();
+        })
+        .then(jsonResponse => {
+            if (jsonResponse.businesses && jsonResponse.businesses.length>0) {
+                return jsonResponse.businesses.map(business => {
                     document.getElementById('root').style.cursor = `default`;
-                    throw new Error('empty response');
-                }   
-                })
-            .catch((err) => {
-                throw new Error(`${err.message}`);
-            })
+                    return {
+                    id: business.id,
+                    imageSrc: business.image_url,
+                    name: business.name,
+                    address: business.location.address1,
+                    city: business.location.city,
+                    state: business.location.state,
+                    zipCode: business.location.zip_code,
+                    category: business.categories[0].title,
+                    rating: business.rating,
+                    reviewCount: business.review_count,
+                    phone: business.phone,
+                    price: business.price
+                    };
+                });
+            } else {
+                document.getElementById('root').style.cursor = `default`;
+                throw new Error('empty response');
+            }
+        })
+        .catch((err) => {
+            throw new Error(`${err.message}`);
+        })
     }
 }
 

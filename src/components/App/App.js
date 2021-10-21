@@ -30,16 +30,11 @@ class App extends React.Component {
         document.getElementById('root').style.cursor = `default`;
           this.setState({ businesses: [] });
           document.getElementById("Negative").style.display = "inline";
-          // var input = document.getElementById("InputField");
-          // var input2 = document.getElementById("InputField2");
-          // input.value = '';
-          // input2.value = '';
       })
     } else {
       this.setState({ businesses: [] });
     }
-  } 
-  
+  }
 
   render() {
 
@@ -47,10 +42,10 @@ class App extends React.Component {
       <div className="App">
         <h1>YelpFinder</h1>
         <SearchBar searchYelp={this.searchYelp} />
-        <div id="Negative"><h1>No results :( Try something else!</h1></div>
+          <div id="Negative"><h1>No results :( Try something else!</h1></div>
         <BusinessList businesses={this.state.businesses} />
       </div>
-    );
+    )
   }
 }
 
